@@ -1,0 +1,55 @@
+:root {
+    --slice-degrees: 36deg;
+    --wedge-multiple: 1;
+    --wedge-color: red;
+    --wedge-text-color: white;
+    --wedge-half-width: 65px;
+    --wedge-border-radius: 50% / 4%;
+  }
+  
+  .outer-circle {
+    height: 400px;
+    width: 400px;
+    border: 5px solid black;
+    border-radius: 50%;
+    background-color: black;
+    box-sizing: content-box;  /* This is necessary so that the border does not make the div smaller */
+  }
+  
+  .wedge {
+    width: 0;
+    height: 0;
+    border-left: var(--wedge-half-width) solid transparent;
+    border-right: var(--wedge-half-width) solid transparent;
+    border-top-width: 200px;
+    border-top-style: solid;
+    border-radius: var(--wedge-border-radius);
+    border-bottom: 200px solid transparent;
+    position: relative;
+    left: calc(200px - var(--wedge-half-width));
+    animation-duration: 10s;
+    animation-timing-function: cubic-bezier(.09, .83, .5, .96);
+    animation-name: wedge-turn;
+    border-top-color: var(--wedge-color);
+    bottom: calc(var(--wedge-multiple) * 400px);
+    rotate: calc(var(--wedge-multiple) * var(--slice-degrees));
+  }
+  
+  .inner-text {
+    color: var(--wedge-text-color);
+    position: relative;
+    bottom: 200px;
+    right: 1px;
+    rotate: 90deg;
+  
+  }
+  
+  @keyframes wedge-turn {
+    from {
+      rotate: calc(var(--wedge-multiple) * var(--slice-degrees));
+    }
+  
+    to {
+      rotate: calc((var(--wedge-multiple) * var(--slice-degrees)) + 1080deg);
+    }
+  }
